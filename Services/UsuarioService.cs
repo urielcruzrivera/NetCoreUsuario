@@ -14,6 +14,8 @@ namespace Services
         bool Create(Usuario usuario);
         IEnumerable<Usuario> GetAllUsers();
         bool Eliminar(int id);
+        Usuario GetUserById(int id);
+        bool ActualizarUsuario(Usuario usuario);
     }
 
     public class UsuarioService : IUsuarioService
@@ -58,6 +60,30 @@ namespace Services
             {
                 Usuario usuarioEliminar = _context.Usuario.Where(x => x.Id == id).FirstOrDefault();
                 _context.Usuario.Remove(usuarioEliminar);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public Usuario GetUserById(int id)
+        {
+           return _context.Usuario.Where(x => x.Id == id).FirstOrDefault();
+        }
+
+        public bool ActualizarUsuario(Usuario usuario) 
+        {
+            try
+            {
+                Usuario usuarioActualizar = _context.Usuario.Where(x => x.Id == usuario.Id).FirstOrDefault();
+                usuarioActualizar.NombreCompleto = usuario.NombreCompleto;
+                usuarioActualizar.PerfilGeneral = usuario.PerfilGeneral;
+                usuarioActualizar.Direccion = usuario.Direccion;
+                usuarioActualizar.Fotografia = usuario.Fotografia;
+                _context.Usuario.Update(usuarioActualizar);
                 _context.SaveChanges();
                 return true;
             }

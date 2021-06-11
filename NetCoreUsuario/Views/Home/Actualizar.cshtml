@@ -1,0 +1,34 @@
+﻿@model Usuario
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Editar Usuario</h3>
+    </div>
+    <br />
+    <div class="col-md-12">
+        <form asp-action="ActualizarUsuario" enctype="multipart/form-data" method="post">
+            <input type="hidden" asp-for="@Model.Id" value="@Model.Id" />
+            <div class="form-group">
+                <label asp-for="NombreCompleto">Nombre de Usuario</label>
+                <input type="text" class="form-control" asp-for="NombreCompleto" value="@Model.NombreCompleto" />
+                <span asp-validation-for="NombreCompleto"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Direccion">Dirección</label>
+                <input type="text" class="form-control" asp-for="Direccion" value="@Model.Direccion" />
+                <span asp-validation-for="Direccion"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PerfilGeneral">Perfil General</label>
+                <input type="text" class="form-control" asp-for="PerfilGeneral" value="@Model.PerfilGeneral" />
+                <span asp-validation-for="PerfilGeneral"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fotografia">Fotografía</label>
+                <input type="file" asp-for="Fotografia" value="@Model.Fotografia" />
+                <span asp-validation-for="Fotografia"></span>
+            </div>
+            <button class="btn btn-success" type="submit">Actualizar</button>
+        </form>
+    </div>
+</div>

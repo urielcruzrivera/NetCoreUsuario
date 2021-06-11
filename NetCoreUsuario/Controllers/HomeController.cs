@@ -66,6 +66,19 @@ namespace NetCoreUsuario.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult Actualizar(int id)
+        {
+            Usuario usuario = _usuarioService.GetUserById(id);
+            return View(usuario);
+        }
+
+        [HttpPost]
+        public IActionResult ActualizarUsuario(Usuario usuario)
+        {
+            _usuarioService.ActualizarUsuario(usuario);
+            return RedirectToAction("Index");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

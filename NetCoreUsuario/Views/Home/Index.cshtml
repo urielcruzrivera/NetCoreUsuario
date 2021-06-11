@@ -22,9 +22,12 @@
             </h4>
             <p>@usuario.PerfilGeneral</p>
 
-            <div class="col-md-12">
-                <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
                     @Html.ActionLink("Eliminar", "Eliminar", new { id = usuario.Id }, new { onclick = "return confirm('¿Desea eliminar este usuario?')", @class = "btn btn-danger" })
+                </div>
+                <div class="col-md-6">
+                    @Html.ActionLink("Editar", "Actualizar", new { id = usuario.Id }, new {@class = "btn btn-info" })
                 </div>
             </div>
         </div>
