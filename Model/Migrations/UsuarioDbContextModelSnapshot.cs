@@ -19,6 +19,21 @@ namespace Model.Migrations
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Model.Entidades.Perfiles", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Perfil")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Perfiles");
+                });
+
             modelBuilder.Entity("Model.Entidades.Usuario", b =>
                 {
                     b.Property<int>("Id")
@@ -32,14 +47,11 @@ namespace Model.Migrations
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Fotografia")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("NombreCompleto")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PerfilGeneral")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PerfilGeneral")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

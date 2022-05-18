@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Model.Entidades;
 using NetCoreUsuario.Models;
 using Services;
@@ -14,8 +10,6 @@ namespace NetCoreUsuario.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
         public IUsuarioService _usuarioService;
         public HomeController(IUsuarioService usuarioService)
         {
@@ -41,19 +35,11 @@ namespace NetCoreUsuario.Controllers
                 return View("Nuevo", usuarioVM);
             }
 
-            string rutaImagen = "wwwroot\\uploads\\" + usuarioVM.Fotografia.FileName;
-
-            using (FileStream fs = new FileStream(rutaImagen, FileMode.Create))
-            {
-                usuarioVM.Fotografia.CopyTo(fs);
-            };
-
             Usuario usuario = new Usuario()
             {
                 NombreCompleto = usuarioVM.NombreCompleto,
                 Direccion = usuarioVM.Direccion,
-                PerfilGeneral = usuarioVM.PerfilGeneral,
-                Fotografia = "uploads/" + usuarioVM.Fotografia.FileName
+                PerfilGeneral = usuarioVM.PerfilGeneral
             };
 
             _usuarioService.Create(usuario);

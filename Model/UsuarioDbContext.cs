@@ -11,5 +11,6 @@ namespace Model
         }
 
         public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Perfiles> Perfiles { get; set; }
     }
 }

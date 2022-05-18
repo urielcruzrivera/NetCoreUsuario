@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Model;
 using Model.Entidades;
@@ -82,7 +80,6 @@ namespace Services
                 usuarioActualizar.NombreCompleto = usuario.NombreCompleto;
                 usuarioActualizar.PerfilGeneral = usuario.PerfilGeneral;
                 usuarioActualizar.Direccion = usuario.Direccion;
-                usuarioActualizar.Fotografia = usuario.Fotografia;
                 _context.Usuario.Update(usuarioActualizar);
                 _context.SaveChanges();
                 return true;
