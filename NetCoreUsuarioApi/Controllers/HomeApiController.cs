@@ -87,6 +87,7 @@ namespace NetCoreUsuarioApi.Controllers
             }
         }
 
+        [Route("Eliminar")]
         [HttpDelete]
         public ApiResponseVM Eliminar(int id)
         {
@@ -115,11 +116,20 @@ namespace NetCoreUsuarioApi.Controllers
             }
         }
 
+        [Route("ActualizarUsuario")]
         [HttpPost]
-        public ApiResponseVM ActualizarUsuario(Usuario usuario)
+        public ApiResponseVM ActualizarUsuario(UsuarioVM usuarioVM)
         {
             try
             {
+
+                Usuario usuario = new Usuario()
+                {
+                    Id = usuarioVM.id,
+                    NombreCompleto = usuarioVM.NombreCompleto,
+                    Direccion = usuarioVM.Direccion,
+                    PerfilGeneral = usuarioVM.PerfilGeneral
+                };
                 _usuarioService.ActualizarUsuario(usuario);
                 return new ApiResponseVM() { success = true, message = "Usuario actualizado con éxito" };
             }

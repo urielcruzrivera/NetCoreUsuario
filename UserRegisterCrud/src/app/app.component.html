@@ -43,25 +43,14 @@
                   <td>{{usuario.perfilDescripcion}}</td>
                   <td>{{usuario.fechaCreacion}}</td>
                   <td>
-                    <a href="#modalEditarEmpleado" class="edit" data-toggle="modal"><i class="material-icons"
-                        data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                    <a href="#modalEliminarEmpleado" class="delete" data-toggle="modal"><i class="material-icons"
-                        data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
+                    <a href="#modalEditarEmpleado" (click)="EstablecerIdEditar(usuario.id)" class="edit" data-toggle="modal">
+                      <i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i>
+                    </a>
+                    <a href="#modalEliminarEmpleado" (click)="EstablecerIdEliminar(usuario.id)" class="delete" data-toggle="modal">
+                      <i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i>
+                    </a>
                   </td>
-               </tr>
-
-                <!-- <tr>
-                  <td>Martin Blank</td>
-                  <td>martinblank@mail.com</td>
-                  <td>Via Monte Bianco 34, Turin, Italy</td>
-                  <td>(480) 631-2097</td>
-                  <td>
-                    <a href="#modalEditarEmpleado" class="edit" data-toggle="modal"><i class="material-icons"
-                        data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-                    <a href="#modalEliminarEmpleado" class="delete" data-toggle="modal"><i class="material-icons"
-                        data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
-                  </td>
-                </tr> -->
+                </tr>
               </tbody>
             </table>
           </div>
@@ -96,7 +85,8 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                <input type="button" id="btnCerrarAgregar" class="btn btn-default" data-dismiss="modal"
+                  value="Cancelar">
                 <button class="btn btn-success" (click)="AgregarUsuario()">Agregar</button>
               </div>
             </form>
@@ -115,25 +105,24 @@
               <div class="modal-body">
                 <div class="form-group">
                   <label>Nombre</label>
-                  <input type="text" class="form-control" required>
+                  <input type="text" class="form-control" name="nombreCompleto" [(ngModel)]="usuarioEditar.nombreCompleto" required>
                 </div>
                 <div class="form-group">
                   <label>Dirección</label>
-                  <input type="text" class="form-control" required>
+                  <input type="text" name="direccion" class="form-control" [(ngModel)]="usuarioEditar.direccion" required>
                 </div>
                 <div class="form-group">
                   <label>Perfil</label>
-                  <select class="form-select" aria-label="Perfiles del usuario a registrar" required>
+                  <select class="form-select" name="perfilGeneral" [(ngModel)]="usuarioEditar.perfilGeneral"
+                    aria-label="Perfiles del usuario a registrar" required>
                     <option selected>Seleccione el perfil del usuario</option>
-                    <option value="1">Administrador</option>
-                    <option value="2">Colaborador</option>
-                    <option value="3">Soporte</option>
+                    <option *ngFor="let perfil of perfiles" [value]="perfil.id">{{perfil.perfil}}</option>
                   </select>
                 </div>
               </div>
               <div class="modal-footer">
-                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                <input type="submit" class="btn btn-info" value="Guardar">
+                <input type="button" id="btnCerrarEditar" class="btn btn-default" data-dismiss="modal" value="Cancelar">
+                <input type="submit" class="btn btn-info" value="Actualizar" (click)="ActualizarUsuario()">
               </div>
             </form>
           </div>
@@ -153,8 +142,9 @@
                 <p class="text-warning"><small>Esta acción no puede ser deshecha.</small></p>
               </div>
               <div class="modal-footer">
-                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
-                <input type="submit" class="btn btn-danger" value="Eliminar">
+                <input type="button" id="btnCerrarEliminar" class="btn btn-default" data-dismiss="modal"
+                  value="Cancelar">
+                <input type="submit" class="btn btn-danger" (click)="EliminarUsuario()" value="Eliminar">
               </div>
             </form>
           </div>

@@ -1,5 +1,5 @@
 export interface Usuarios {
-    Id: number;
+    id: number;
     NombreCompleto: string;
     Direccion: string;
     PerfilGeneral: number;
