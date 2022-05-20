@@ -105,15 +105,15 @@
               <div class="modal-body">
                 <div class="form-group">
                   <label>Nombre</label>
-                  <input type="text" class="form-control" name="nombreCompleto" [(ngModel)]="usuarioEditar.nombreCompleto" required>
+                  <input type="text" class="form-control" name="nombreCompleto" [(ngModel)]="nombreCompletoEditar" required>
                 </div>
                 <div class="form-group">
                   <label>Dirección</label>
-                  <input type="text" name="direccion" class="form-control" [(ngModel)]="usuarioEditar.direccion" required>
+                  <input type="text" name="direccion" class="form-control" [(ngModel)]="direccionEditar" required>
                 </div>
                 <div class="form-group">
                   <label>Perfil</label>
-                  <select class="form-select" name="perfilGeneral" [(ngModel)]="usuarioEditar.perfilGeneral"
+                  <select class="form-select" name="perfilGeneral" [(ngModel)]="perfilGeneralEditar"
                     aria-label="Perfiles del usuario a registrar" required>
                     <option selected>Seleccione el perfil del usuario</option>
                     <option *ngFor="let perfil of perfiles" [value]="perfil.id">{{perfil.perfil}}</option>

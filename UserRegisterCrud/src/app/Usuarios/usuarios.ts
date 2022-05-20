@@ -1,8 +1,8 @@
 export interface Usuarios {
     id: number;
-    NombreCompleto: string;
-    Direccion: string;
-    PerfilGeneral: number;
-    PerfilDescripcion:string;
-    FechaCreacion: string;
+    nombreCompleto: string;
+    direccion: string;
+    perfilGeneral: number;
+    perfilDescripcion:string;
+    fechaCreacion: string;
 }

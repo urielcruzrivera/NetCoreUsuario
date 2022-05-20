@@ -13,20 +13,24 @@ export class AppComponent implements OnInit {
   title = 'UserRegisterCrud';
   usuario: Usuarios = {
     id: 0,
-    NombreCompleto: '',
-    Direccion: '',
-    PerfilGeneral: 0,
-    PerfilDescripcion: '',
-    FechaCreacion: ''
+    nombreCompleto: '',
+    direccion: '',
+    perfilGeneral: 0,
+    perfilDescripcion: '',
+    fechaCreacion: ''
   }
-  usuarioEditar:Usuarios= {
+  usuarioEditar: Usuarios = {
     id: 0,
-    NombreCompleto: '',
-    Direccion: '',
-    PerfilGeneral: 0,
-    PerfilDescripcion: '',
-    FechaCreacion: ''
+    nombreCompleto: '',
+    direccion: '',
+    perfilGeneral: 0,
+    perfilDescripcion: '',
+    fechaCreacion: ''
   };
+  idUsuarioEditar: number = 0;
+  nombreCompletoEditar: string = '';
+  direccionEditar: string = '';
+  perfilGeneralEditar: number = 0;
   perfiles: PerfilGeneral[] = [];
   todosLosUsuarios: Usuarios[] = [];
   IdUsuario: number = 0;
@@ -59,11 +63,11 @@ export class AppComponent implements OnInit {
     this.servicio.ObtenerUsuarios().subscribe(async (data: any) => {
       this.usuario = {
         id: 0,
-        NombreCompleto: '',
-        Direccion: '',
-        PerfilGeneral: 0,
-        PerfilDescripcion: '',
-        FechaCreacion: ''
+        nombreCompleto: '',
+        direccion: '',
+        perfilGeneral: 0,
+        perfilDescripcion: '',
+        fechaCreacion: ''
       };
       this.todosLosUsuarios = data.data;
     }, (error) => {
@@ -76,7 +80,10 @@ export class AppComponent implements OnInit {
   }
 
   public EstablecerIdEditar(Id: number): void {
-    this.usuarioEditar = this.todosLosUsuarios.find(x=>x.id == Id);
+    this.idUsuarioEditar = this.todosLosUsuarios.find(x => x.id == Id).id;
+    this.nombreCompletoEditar = this.todosLosUsuarios.find(x => x.id == Id).nombreCompleto;
+    this.direccionEditar = this.todosLosUsuarios.find(x => x.id == Id).direccion;
+    this.perfilGeneralEditar = this.todosLosUsuarios.find(x => x.id == Id).perfilGeneral;
   }
 
   public EliminarUsuario() {
@@ -90,7 +97,11 @@ export class AppComponent implements OnInit {
     });
   }
 
-  public ActualizarUsuario(){
+  public ActualizarUsuario() {
+    this.usuarioEditar.id = this.idUsuarioEditar;
+    this.usuarioEditar.nombreCompleto = this.nombreCompletoEditar;
+    this.usuarioEditar.direccion = this.direccionEditar;
+    this.usuarioEditar.perfilGeneral = this.perfilGeneralEditar;
     this.servicio.ActualizarUsuario(this.usuarioEditar).subscribe(async (data: any) => {
       swal('Actualización exitosa', 'Usuario actualizado con éxito!!!', 'success').then(() => {
         this.ObtenerUsuarios();
